@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дз лекція 8</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        nav {
+            background: #34495e;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            background: #3498db;
+            border-radius: 3px;
+        }
+        
+        nav a:hover {
+            background: #2980b9;
+        }
+        
+        section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .example {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 15px 0;
+            background: #f9f9f9;
+        }
+        
+        .block {
+            background: #3498db;
+            color: white;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        
+        .inline {
+            background: #e74c3c;
+            color: white;
+            padding: 3px;
+            margin: 0 2px;
+        }
+        
+        .float-left {
+            float: left;
+            width: 120px;
+            height: 80px;
+            background: #9b59b6;
+            margin: 10px;
+            padding: 10px;
+            color: white;
+        }
+        
+        .float-right {
+            float: right;
+            width: 120px;
+            height: 80px;
+            background: #1abc9c;
+            margin: 10px;
+            padding: 10px;
+            color: white;
+        }
+        
+        .clear {
+            clear: both;
+        }
+        
+        .overflow-box {
+            width: 250px;
+            height: 120px;
+            border: 1px solid #ccc;
+            margin: 10px 0;
+            padding: 10px;
+        }
+        
+        .big-content {
+            width: 350px;
+            height: 180px;
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+        }
+        
+        .position-demo {
+            height: 180px;
+            border: 1px dashed #ccc;
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .box {
+            width: 80px;
+            height: 80px;
+            background: #f39c12;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .relative {
+            position: relative;
+            top: 15px;
+            left: 20px;
+            background: #3498db;
+        }
+        
+        .absolute {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #e74c3c;
+        }
+        
+        .fixed {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background: #9b59b6;
+        }
+        
+        .sticky {
+            position: sticky;
+            top: 0;
+            background: #2ecc71;
+        }
+        
+        .flex {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .flex-item {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .size-box {
+            width: 180px;
+            height: 80px;
+            padding: 15px;
+            border: 3px solid #e74c3c;
+            margin: 10px;
+        }
+        
+        .content-box {
+            box-sizing: content-box;
+            background: #f1c40f;
+        }
+        
+        .border-box {
+            box-sizing: border-box;
+            background: #2ecc71;
+        }
+        
+        .compare {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .compare > div {
+            flex: 1;
+            min-width: 280px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Експерименти з блоковою моделлю</h1>
+        <p>Домашнє завдання з CSS</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#block-inline">Блокові та інлайнові</a></li>
+            <li><a href="#normalize-reset">Normalize/Reset</a></li>
+            <li><a href="#display">Display</a></li>
+            <li><a href="#box-sizing">Box-sizing</a></li>
+            <li><a href="#float">Float</a></li>
+            <li><a href="#overflow">Overflow</a></li>
+            <li><a href="#position">Position</a></li>
+        </ul>
+    </nav>
+    
+    <section id="block-inline">
+        <h2>Блокові та інлайнові елементи</h2>
+        <p>Блокові елементи займають всю ширину, інлайнові - тільки потрібну.</p>
+        
+        <div class="example">
+            <h3>Блокові елементи (div):</h3>
+            <div class="block">Блок 1</div>
+            <div class="block">Блок 2</div>
+            
+            <h3>Інлайнові елементи (span):</h3>
+            <p>Текст з <span class="inline">інлайновим</span> елементом всередині.</p>
+        </div>
+    </section>
+    
+    <section id="normalize-reset">
+        <h2>Normalize.css та Reset.css</h2>
+        <p>Використовуються для однакового відображення в браузерах.</p>
+        
+        <div class="compare">
+            <div>
+                <h3>Без normalize/reset:</h3>
+                <p>Різні браузери мають різні стилі за замовчуванням.</p>
+                <ul>
+                    <li>Елемент 1</li>
+                    <li>Елемент 2</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3>З normalize/reset:</h3>
+                <p>Усі стилі уніфіковані.</p>
+                <ul>
+                    <li>Елемент 1</li>
+                    <li>Елемент 2</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="example">
+            <h3>Висновок:</h3>
+            <p>Normalize.css краще, тому що зберігає корисні стилі. Reset.css повністю все скидає.</p>
+        </div>
+    </section>
+    
+    <section id="display">
+        <h2>Властивість display</h2>
+        <p>Визначає тип відображення елемента.</p>
+        
+        <div class="example">
+            <h3>display: block</h3>
+            <div class="block">Блок</div>
+            <div class="block">Блок</div>
+            
+            <h3>display: inline</h3>
+            <span class="inline">Інлайн</span>
+            <span class="inline">Інлайн</span>
+            
+            <h3>display: flex</h3>
+            <div class="flex">
+                <div class="flex-item">Flex 1</div>
+                <div class="flex-item">Flex 2</div>
+                <div class="flex-item">Flex 3</div>
+            </div>
+            
+            <h3>display: inline-block</h3>
+            <div style="display: inline-block; background: #9b59b6; color: white; padding: 10px; margin: 5px;">
+                Inline-block
+            </div>
+            <div style="display: inline-block; background: #9b59b6; color: white; padding: 10px; margin: 5px;">
+                Inline-block
+            </div>
+        </div>
+    </section>
+    
+    <section id="box-sizing">
+        <h2>Box-sizing</h2>
+        <p>Впливає на розрахунок ширини і висоти.</p>
+        
+        <div class="example">
+            <h3>box-sizing: content-box</h3>
+            <p>Padding і border додаються до width/height.</p>
+            <div class="size-box content-box">
+                width: 180px + padding: 30px + border: 6px = 216px
+            </div>
+            
+            <h3>box-sizing: border-box</h3>
+            <p>Width/height включають padding і border.</p>
+            <div class="size-box border-box">
+                width: 180px (включає все)
+            </div>
+        </div>
+    </section>
+    
+    <section id="float">
+        <h2>Float та clear</h2>
+        <p>Float для обтікання, clear - для скасування.</p>
+        
+        <div class="example">
+            <div class="float-left">Float left</div>
+            <div class="float-right">Float right</div>
+            <p>Текст обтікає плаваючі елементи. Це старий спосіб верстки.</p>
+            <p>Clear зупиняє обтікання.</p>
+            
+            <div class="clear"></div>
+            <p>Текст після clear не обтікає.</p>
+        </div>
+    </section>
+    
+    <section id="overflow">
+        <h2>Overflow</h2>
+        <p>Що робити з вмістом, який не вміщується.</p>
+        
+        <div class="example">
+            <h3>overflow: visible</h3>
+            <div class="overflow-box" style="overflow: visible;">
+                <div class="big-content"></div>
+            </div>
+            
+            <h3>overflow: hidden</h3>
+            <div class="overflow-box" style="overflow: hidden;">
+                <div class="big-content"></div>
+            </div>
+            
+            <h3>overflow: scroll</h3>
+            <div class="overflow-box" style="overflow: scroll;">
+                <div class="big-content"></div>
+            </div>
+            
+            <h3>overflow: auto</h3>
+            <div class="overflow-box" style="overflow: auto;">
+                <div class="big-content"></div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="position">
+        <h2>Позиціонування</h2>
+        <p>Різні способи розташування елементів.</p>
+        
+        <div class="example">
+            <h3>position: static</h3>
+            <div class="position-demo">
+                <div class="box">Static</div>
+                <p>Звичайне положення в потоці.</p>
+            </div>
+            
+            <h3>position: relative</h3>
+            <div class="position-demo">
+                <div class="box">Static</div>
+                <div class="box relative">Relative</div>
+                <p>Зсувається від нормального положення.</p>
+            </div>
+            
+            <h3>position: absolute</h3>
+            <div class="position-demo">
+                <div class="box">Static</div>
+                <div class="box absolute">Absolute</div>
+                <p>Позиціонується відносно батька.</p>
+            </div>
+            
+            <h3>position: fixed</h3>
+            <div class="position-demo">
+                <div class="box">Static</div>
+                <p>Фіксовано відносно вікна.</p>
+            </div>
+            <div class="box fixed">Fixed</div>
+            
+            <h3>position: sticky</h3>
+            <div class="position-demo" style="height: 250px; overflow: auto;">
+                <div class="box sticky">Sticky</div>
+                <p>Прокрутіть для ефекту.</p>
+                <p>Текст...</p>
+                <p>Текст...</p>
+                <p>Текст...</p>
+                <p>Текст...</p>
+                <p>Текст...</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>Білоус Майя| 2025</p>
+    </footer>
+</body>
+</html>
